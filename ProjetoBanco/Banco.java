@@ -18,7 +18,7 @@ public class Banco {
      * Metodo que abri uma conta no banco.
      * Titular - nome do titular da conta.
      * 
-     * @return True caso a conta tenha sido aberta com sucesso e False caso
+     * @return True, caso a conta tenha sido aberta com sucesso e False caso
      *         contrário.
      */
     public int abrirConta(String titular) {

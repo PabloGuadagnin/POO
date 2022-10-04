@@ -53,13 +53,30 @@ public class BancoUI {
     public void abriConta() {
         int numeroConta;
         String nome;
+        String cidade;
+        String estado;
+        long cpf;
+        Titular novoTitular = new Titular();
 
         System.out.println("Abertura de conta");
         System.out.print("Informe o nome do titular: ");
-        nome = entrada.nextLine();
-        numeroConta = meuBanco.abrirConta(nome);
+        novoTitular.setNome(entrada.nextLine());
+        numeroConta = meuBanco.abrirConta(novoTitular.getNome());
+        
+        System.out.print("Informe o CPF do titular: ");
+        novoTitular.setCpf(entrada.nextLong());
+        cpf = novoTitular.getCpf();
+        entrada.nextLine();
+
+        System.out.print("Informe a Cidade do titular: ");
+        novoTitular.setCidade(entrada.nextLine());
+
+        System.out.print("Informe o Estado do titular: ");
+        novoTitular.setEstado(entrada.nextLine());
+
         if (numeroConta != -1) {
-            System.out.println("Abertura de conta realizada com sucesso. Numero de conta = " + numeroConta);
+            System.out.println("Abertura de conta realizada com sucesso. Numero de conta: " 
+            + numeroConta+", CPF: "+cpf);
         } else {
             System.out.println("Não foi possível abrir a conta");
         }
