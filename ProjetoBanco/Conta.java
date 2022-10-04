@@ -1,14 +1,13 @@
 package ProjetoBanco;
 
 public class Conta {
-
 	private static int numeroGeral = 10000; // variavel de classe
 	private int numero;
-	private String titular;
+	private Titular titular;
 	private double saldo;
 	private double limite;
 
-	public Conta(String titular) {
+	public Conta(Titular titular) {
 		this.numero = numeroGeral++; // garante que não haverá duas contas com o mesmo número
 		this.titular = titular;
 		this.saldo = 0;
@@ -23,7 +22,7 @@ public class Conta {
 		return limite;
 	}
 
-	public String getTitular() {
+	public Titular getTitular() {
 		return titular;
 	}
 
@@ -35,7 +34,7 @@ public class Conta {
 		this.numero = numero;
 	}
 
-	public void setTitular(String titular) {
+	public void setTitular(Titular titular) {
 		this.titular = titular;
 	}
 
@@ -56,7 +55,9 @@ public class Conta {
 	}
 
 	public String toString() {
-		return "NumeroGeral:" + numeroGeral + " Numero: " + numero + " Titular: " + titular + " Saldo: " + saldo
-				+ " Limite: " + limite;
+		// return "Numero: "+numero+" Titular: "+titular.getNome()+" Saldo: "+saldo+"
+		// Limite: "+limite;
+		return "Numero: " + numero + " " + titular + " Saldo: " + saldo + " Limite: " + limite;
 	}
+
 }

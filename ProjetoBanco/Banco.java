@@ -18,10 +18,10 @@ public class Banco {
      * Metodo que abri uma conta no banco.
      * Titular - nome do titular da conta.
      * 
-     * @return True, caso a conta tenha sido aberta com sucesso e False caso
+     * @return True caso a conta tenha sido aberta com sucesso e False caso
      *         contrário.
      */
-    public int abrirConta(String titular) {
+    public int abrirConta(Titular titular) {
         if (nContas < conjuntoConta.length) {
             conjuntoConta[nContas] = new Conta(titular);
             return conjuntoConta[nContas++].getNumero();
@@ -51,12 +51,9 @@ public class Banco {
      * @return O nome do titular da conta com o número informado ou "" caso não
      *         exista uma conta com o número.
      */
-    public String getTitular(int numero) {
+    public Titular getTitular(int numero) {
         Conta c1 = getConta(numero);
-        if (c1 != null) {
-            return c1.getTitular();
-        }
-        return "";
+        return c1.getTitular();
     }
 
     /**
@@ -133,4 +130,5 @@ public class Banco {
         }
         return dados;
     }
+
 }
