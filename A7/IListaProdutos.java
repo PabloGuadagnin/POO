@@ -1,8 +1,8 @@
 public interface IListaProdutos {
-    
-    public boolean incluirProduto ( Produto produto);
-    public Produto consultar ( int codigo );
-    public boolean removerProduto (int codigo);
-    public boolean ListarProdutos();
+    // interface sempre será public e abristact
+    boolean incluirProduto ( Produto produto);
+    Produto consultar ( int codigo );
+    boolean removerProduto (int codigo);
+    boolean ListarProdutos();
 
 }
