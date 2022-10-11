@@ -1,4 +1,4 @@
-package ProjetoBanco;
+package A3;
 
 import java.util.Scanner;
 
@@ -52,21 +52,12 @@ public class BancoUI {
 
     public void abriConta() {
         int numeroConta;
-        String nome, cidade, estado;
-        long CPF;
+        String nome;
 
         System.out.println("Abertura de conta");
         System.out.print("Informe o nome do titular: ");
         nome = entrada.nextLine();
-        System.out.print("Informe o CPF do titular: ");
-        CPF = entrada.nextLong();
-        entrada.nextLine();
-        System.out.print("Informe a cidade do titular: ");
-        cidade = entrada.nextLine();
-        System.out.print("Informe o estado do titular: ");
-        estado = entrada.nextLine();
-
-        numeroConta = meuBanco.abrirConta(new Titular(nome, CPF, cidade, estado));
+        numeroConta = meuBanco.abrirConta(nome);
         if (numeroConta != -1) {
             System.out.println("Abertura de conta realizada com sucesso. Numero de conta = " + numeroConta);
         } else {
@@ -134,5 +125,4 @@ public class BancoUI {
         System.out.println("Listagem das Contas:");
         System.out.println(meuBanco.toString());
     }
-
 }

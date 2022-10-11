@@ -1,4 +1,4 @@
-package ProjetoBanco;
+package A3;
 
 public class Banco {
     private Conta[] conjuntoConta;
@@ -21,7 +21,7 @@ public class Banco {
      * @return True caso a conta tenha sido aberta com sucesso e False caso
      *         contrário.
      */
-    public int abrirConta(Titular titular) {
+    public int abrirConta(String titular) {
         if (nContas < conjuntoConta.length) {
             conjuntoConta[nContas] = new Conta(titular);
             return conjuntoConta[nContas++].getNumero();
@@ -51,9 +51,12 @@ public class Banco {
      * @return O nome do titular da conta com o número informado ou "" caso não
      *         exista uma conta com o número.
      */
-    public Titular getTitular(int numero) {
+    public String getTitular(int numero) {
         Conta c1 = getConta(numero);
-        return c1.getTitular();
+        if (c1 != null) {
+            return c1.getTitular();
+        }
+        return "";
     }
 
     /**
@@ -130,5 +133,4 @@ public class Banco {
         }
         return dados;
     }
-
 }
