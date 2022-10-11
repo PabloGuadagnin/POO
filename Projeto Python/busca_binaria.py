@@ -2,7 +2,6 @@
 Implementando uma busca binária em um vetor ordenado de caracteres aleatórios.
 @autor Pablo Guadagnin
 '''          
-
 from random import randint
 # Pede ao usuário o tamanho do vetor aleatório desejado
 x = int(input('Entre com a quantidade de caracteres que desejar: '))

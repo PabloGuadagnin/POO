@@ -7,7 +7,5 @@ public class Main {
         System.out.println(r1);
         System.out.println(r2);
 
-
-
     }
 }
