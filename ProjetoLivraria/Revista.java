@@ -1,3 +1,5 @@
+package ProjetoLivraria;
+
 public class Revista extends Produto{
 
     private String editora;

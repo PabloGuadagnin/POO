@@ -1,4 +1,4 @@
-package A3;
+package ProjetoBanco;
 
 public class Conta {
 

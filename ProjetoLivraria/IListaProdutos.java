@@ -1,3 +1,5 @@
+package ProjetoLivraria;
+
 public interface IListaProdutos {
     // interface sempre será public e abristact
     boolean incluirProduto ( Produto produto);
