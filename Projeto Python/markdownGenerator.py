@@ -14,3 +14,6 @@ print(newhtml.body)
 md = markdownify.markdownify(html.content, heading_style="ATX")
   
 print(md)
+
+arquivo = open("arquivo.MD", "a")
+arquivo.write(md)
