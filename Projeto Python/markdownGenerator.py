@@ -2,11 +2,11 @@ from bs4 import BeautifulSoup
 import markdownify
 import requests
   
-r = requests.get('https://eventos.unipampa.edu.br/')
+r = requests.get('https://unipampa.edu.br/portal/graduacao/modalidade')
 c = BeautifulSoup(r.content, 'html.parser')
 
 # Indica o que buscar no site, nesse caso ignorei algumas "sujeiras" que haviam antes do corpo do site.
-corpo = c.find('div' , attrs={'class' : 'site'})
+corpo = c.find('body' , attrs={'class' : 'html'})
 
 # Transforma o corpo em uma string, pois o markdownify não suporta objetos do BeautifulSoup
 html = str(corpo)
