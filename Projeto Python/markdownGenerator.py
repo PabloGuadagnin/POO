@@ -1,3 +1,6 @@
+# @author Pablo Guadagnin
+# Programa para geração de arquivos.MD à partir de sites.
+
 from bs4 import BeautifulSoup
 import markdownify
 import requests
