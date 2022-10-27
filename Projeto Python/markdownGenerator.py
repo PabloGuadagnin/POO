@@ -3,15 +3,18 @@ import markdownify
 import requests
   
   
-r = requests.get('https://www.youtube.com/')
+r = requests.get('https://eventos.unipampa.edu.br/')
 c = BeautifulSoup(r.content, 'html.parser')
 
-# print(r.content)
+corpo = c.find('div' , attrs={'class' : 'site'})
+
+html = str(corpo)
+# print(html)
 
 # convert html to markdown
-md = markdownify.markdownify(r.content, heading_style="ATX")
+md = markdownify.markdownify(html, heading_style="ATX")
   
-print(md)
+# print(md)
 
-arquivo = open("arquivo.MD", "a")
+arquivo = open("Projeto Python/arquivo.MD", "a")
 arquivo.write(md)

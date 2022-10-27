@@ -13,22 +13,14 @@ site = BeautifulSoup(conteudo, 'html.parser')
 
 corpo = site.find('div' , attrs={'class' : 'site'})
 
-# print(corpo)
+arquivo = open("arquivo.txt", "w")
+arquivo.write(corpo.string)
+arquivo.close()
+
+#print(corpo)
   
 # convert html to markdown
 h = markdownify.markdownify(html.content, heading_style="ATX")
-
-arquivo = open("arquivo.txt", "a")
-arquivo.write(h)
   
 # print(h)
 
-def main():
-    arquivo = open("arquivo.txt", "a")
-    source = arquivo.read()
-    arquivo.close()
-
-    target = markdownify.markdownify(source)
-    arquivo = open("arquivo.MD", "w")
-    arquivo.write(target)
-    arquivo.close()
