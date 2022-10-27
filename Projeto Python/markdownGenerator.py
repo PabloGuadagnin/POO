@@ -2,16 +2,14 @@ from bs4 import BeautifulSoup
 import markdownify
 import requests
   
-# Referencia a html à transformar  
-html = requests.get('https://sites.unipampa.edu.br/eventos/')  
+  
+r = requests.get('https://www.youtube.com/')
+c = BeautifulSoup(r.content, 'html.parser')
 
-# Adiciona o parser para tratarmos o conteúdo do html
-newhtml = BeautifulSoup(html.content, 'html.parser')
-
-print(newhtml.body)
+# print(r.content)
 
 # convert html to markdown
-md = markdownify.markdownify(html.content, heading_style="ATX")
+md = markdownify.markdownify(r.content, heading_style="ATX")
   
 print(md)
 
