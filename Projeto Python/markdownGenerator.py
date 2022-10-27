@@ -13,8 +13,13 @@ html = str(corpo)
 
 # convert html to markdown
 md = markdownify.markdownify(html, heading_style="ATX")
-  
+md2 = markdownify.markdownify(r.content, heading_style="ATX")
 # print(md)
 
 arquivo = open("Projeto Python/arquivo.MD", "a")
 arquivo.write(md)
+arquivo.close()
+
+arquivo = open("Projeto Python/arquivo2.MD", "a")
+arquivo.write(md2)
+arquivo.close()
