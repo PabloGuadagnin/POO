@@ -2,24 +2,21 @@ from bs4 import BeautifulSoup
 import markdownify
 import requests
   
-  
 r = requests.get('https://eventos.unipampa.edu.br/')
 c = BeautifulSoup(r.content, 'html.parser')
 
+# Indica o que buscar no site, nesse caso ignorei algumas "sujeiras" que haviam antes do corpo do site.
 corpo = c.find('div' , attrs={'class' : 'site'})
 
+# Transforma o corpo em uma string, pois o markdownify não suporta objetos do BeautifulSoup
 html = str(corpo)
 # print(html)
 
-# convert html to markdown
+# converte a string html para markdown
 md = markdownify.markdownify(html, heading_style="ATX")
-md2 = markdownify.markdownify(r.content, heading_style="ATX")
 # print(md)
 
+# Gera um arquivo com a extensão .MD onde está o site em formato markdown
 arquivo = open("Projeto Python/arquivo.MD", "a")
 arquivo.write(md)
-arquivo.close()
-
-arquivo = open("Projeto Python/arquivo2.MD", "a")
-arquivo.write(md2)
 arquivo.close()
