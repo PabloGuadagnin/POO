@@ -26,7 +26,7 @@ public class Trab1ThreadAeroporto extends Thread{
     }
 
     /**
-     * Método que faz com que verifica quando os aviões chegaram e gerencia a fila de aterrissagem.
+     * Método que verifica quando os aviões chegaram e gerencia a fila de aterrissagem.
      */
     public void run() {
 

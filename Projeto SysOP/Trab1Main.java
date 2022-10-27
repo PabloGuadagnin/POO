@@ -10,7 +10,7 @@
 
 import java.util.concurrent.Semaphore;
 
-public class Trab1Main {
+class Trab1Main {
    public static void main(String args[]) {
 
       int permitido = 1; // Seta o numero de avioes permitidos a pousar por vez.
