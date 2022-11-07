@@ -1,0 +1,13 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "Projetos JAVA/LocadoraDeVeiculos/.JavaFX/javafx-sdk-19/lib/javafx.base.jar",
+        "Projetos JAVA/LocadoraDeVeiculos/.JavaFX/javafx-sdk-19/lib/javafx.controls.jar",
+        "Projetos JAVA/LocadoraDeVeiculos/.JavaFX/javafx-sdk-19/lib/javafx.fxml.jar",
+        "Projetos JAVA/LocadoraDeVeiculos/.JavaFX/javafx-sdk-19/lib/javafx.graphics.jar",
+        "Projetos JAVA/LocadoraDeVeiculos/.JavaFX/javafx-sdk-19/lib/javafx.media.jar",
+        "Projetos JAVA/LocadoraDeVeiculos/.JavaFX/javafx-sdk-19/lib/javafx.swing.jar",
+        "Projetos JAVA/LocadoraDeVeiculos/.JavaFX/javafx-sdk-19/lib/javafx.web.jar",
+        "Projetos JAVA/LocadoraDeVeiculos/.JavaFX/javafx-sdk-19/lib/javafx-swt.jar"
+    ]
+}
