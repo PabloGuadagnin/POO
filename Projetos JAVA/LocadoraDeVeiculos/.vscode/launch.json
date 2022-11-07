@@ -1,0 +1,58 @@
+{
+    // Use o IntelliSense para saber mais sobre os atributos possíveis.
+    // Focalizar para exibir as descrições dos atributos existentes.
+    // Para obter mais informações, acesse: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "aluguelVeiculos"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "aluguelVeiculos_89c27ed4"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main2",
+            "request": "launch",
+            "mainClass": "Main2",
+            "projectName": "aluguelVeiculos_97dade0c"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "App",
+            "projectName": "aluguelVeiculos_97dade0c",
+            "vmArgs": "--module-path \"G:/Meu Drive/Rep.GitHub/aluguelVeiculos/.JavaFX/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml,javafx.graphics"
+        },
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "aluguelVeiculos_97dade0c"
+        },
+        {
+            "type": "java",
+            "name": "Launch App",
+            "request": "launch",
+            "mainClass": "gui.App",
+            "projectName": "aluguelVeiculos_97dade0c",
+            "vmArgs": "--module-path \"G:/Meu Drive/Rep.GitHub/aluguelVeiculos/.JavaFX/javafx-sdk-19/lib\" --add-modules javafx.controls,javafx.fxml,javafx.graphics"
+        }
+    ]
+}
