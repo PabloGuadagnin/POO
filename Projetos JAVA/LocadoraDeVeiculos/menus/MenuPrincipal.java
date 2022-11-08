@@ -2,9 +2,7 @@ package menus;
 
 import java.util.Scanner;
 
-import cadastramentos.CadClientes;
-import cadastramentos.CadLocacoes;
-import cadastramentos.CadVeiculos; 
+import cadastramentos.*;
 
 	/*Cores
   PRETO	    \u001B[30m	
@@ -19,7 +17,7 @@ import cadastramentos.CadVeiculos;
 
 public class MenuPrincipal {
 	
-    CadClientes cadCLientes = new CadClientes();
+    CadClientes listaClientes = new CadClientes();
     CadVeiculos listaVeiculos = new CadVeiculos();
     CadLocacoes listaLocacoes = new CadLocacoes();
 
@@ -28,8 +26,9 @@ public class MenuPrincipal {
     private MenuLocacoes menuLocacoes;
 
     public MenuPrincipal() {
+        menuClientes = new MenuClientes(listaClientes);
         menuVeiculos = new MenuVeiculos(listaVeiculos);
-        menuLocacoes = new MenuLocacoes(listaLocacoes, listaVeiculos, cadCLientes);
+        menuLocacoes = new MenuLocacoes(listaLocacoes, listaVeiculos, listaClientes);
         start();
     }
 
@@ -62,7 +61,7 @@ public class MenuPrincipal {
             switch (opcao) {
                 case "a": case "A":
                     System.out.print("\033[H\033[2J");
-                    menuClientes = new MenuClientes(cadCLientes);
+                    menuClientes = new MenuClientes(listaClientes);
                     break;
                 case "b": case "B":
                     System.out.print("\033[H\033[2J");

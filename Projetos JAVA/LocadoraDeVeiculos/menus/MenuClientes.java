@@ -22,10 +22,10 @@ import construtores.*;
 public class MenuClientes {
 
     private Scanner e = new Scanner(System.in);
-    private CadClientes cadClientes;
+    private CadClientes listaClientes;
 
-    public MenuClientes(CadClientes cadClientes) {
-        this.cadClientes = cadClientes;
+    public MenuClientes(CadClientes listaClientes) {
+        this.listaClientes = listaClientes;
         escolhaClientes();
     }
 
@@ -129,7 +129,7 @@ public class MenuClientes {
                     break;
                 case "s":
                 case "S":
-                    cadClientes.add(cliente);
+                    listaClientes.add(cliente);
                     System.out.println("\u001B[32m Cadastro Efetuado com Sucesso! \u001B[37m");
                     break;
                 default:
@@ -155,8 +155,8 @@ public class MenuClientes {
     private void consultaCliente() {
         System.out.println("Informe o CPF do cliente a ser consultado: ");
         String cpf = e.nextLine();
-        if (cadClientes.existe(cpf)) {
-            System.out.println(cadClientes.getInfo(cpf));
+        if (listaClientes.existe(cpf)) {
+            System.out.println(listaClientes.getInfo(cpf));
             escolhaClientes();
         } else {
             msgClienteInexistente();
@@ -164,21 +164,21 @@ public class MenuClientes {
     }
 
     private void listarCLientes() {
-        if (cadClientes.getListaCLientes().isEmpty()) {
+        if (listaClientes.getListaCLientes().isEmpty()) {
             msgListaVazia();
         } else {
             System.out.println();
-            System.out.println(cadClientes.getResumoInfo());
+            System.out.println(listaClientes.getResumoInfo());
             System.out.println();
         }
     }
 
     private void relatorioCLientes() {
-        if (cadClientes.getListaCLientes().isEmpty()) {
+        if (listaClientes.getListaCLientes().isEmpty()) {
             msgListaVazia();
         } else {
             System.out.println();
-            System.out.println(cadClientes.getInfo());
+            System.out.println(listaClientes.getInfo());
             System.out.println();
         }
     }
@@ -186,8 +186,8 @@ public class MenuClientes {
     private void excluirCliente() {
         System.out.println("Informe o CPF do cliente que deseja remover: ");
         String cpf = e.nextLine();
-        if (cadClientes.existe(cpf)) {
-            cadClientes.remove(cpf);
+        if (listaClientes.existe(cpf)) {
+            listaClientes.remove(cpf);
             msgClienteRemovido();
         } else {
             msgClienteInexistente();
@@ -230,8 +230,8 @@ public class MenuClientes {
     private void menuAlterar() {
         System.out.println("Informe o CPF do cliente que deseja alterar: ");
         String cpf = e.nextLine();
-        if (cadClientes.existe(cpf)) {
-            MenuAlterarClientes menuAlterarClientes = new MenuAlterarClientes(cadClientes, cpf);
+        if (listaClientes.existe(cpf)) {
+            MenuAlterarClientes menuAlterarClientes = new MenuAlterarClientes(listaClientes, cpf);
         } else {
             msgClienteInexistente();
         }
