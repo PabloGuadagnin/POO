@@ -6,22 +6,16 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch Current File",
+            "name": "Launch Main2",
             "request": "launch",
-            "mainClass": "${file}"
+            "mainClass": "Main2",
+            "projectName": "Projetos_6271b407"
         },
         {
             "type": "java",
             "name": "Launch Main",
             "request": "launch",
             "mainClass": "Main",
-            "projectName": "Projetos_6271b407"
-        },
-        {
-            "type": "java",
-            "name": "Launch Trab1Main",
-            "request": "launch",
-            "mainClass": "Trab1Main",
             "projectName": "Projetos_6271b407"
         },
         {
