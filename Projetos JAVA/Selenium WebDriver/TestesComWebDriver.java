@@ -57,22 +57,27 @@ public class TestesComWebDriver {
     /**
      * Verifica se o site está consultando emails válidos no banco
      * e informando que o email inserido é inválido
+     * @throws InterruptedException
      */
     @Test
-    public void testeDeConsultaDeEmail() {
+    public void testeDeConsultaDeEmail() throws InterruptedException {
         WebElement btLogin = driver.findElement(By.partialLinkText("Entre"));
         btLogin.click();
 
         WebElement btContinue = driver.findElement(By.className("andes-list__item-anchor"));
+        Thread.sleep(500);
         btContinue.click();
 
         WebElement btComecar = driver.findElement(By.className("andes-button"));
+        Thread.sleep(500);
         btComecar.click();
 
         WebElement cxTexto = driver.findElement(By.className("andes-form-control__field"));
+        Thread.sleep(500);
         cxTexto.sendKeys("schwarzenegger@hotmail.com");
 
         WebElement btContinuar = driver.findElement(By.className("andes-button__content"));
+        Thread.sleep(500);
         btContinuar.click();
 
         WebElement txt = driver.findElement(By.className("andes-form-control__message-fixed"));
@@ -85,26 +90,26 @@ public class TestesComWebDriver {
     /**
      * Testa se a mensagem de email digitado é inválido está aparecendo para o
      * usuário
+     * @throws InterruptedException
      */
     @Test
-    public void testeDeCadastroInvalido() {
+    public void testeDeCadastroInvalido() throws InterruptedException {
         WebElement btCriaConta = driver.findElement(By.partialLinkText("Crie a sua conta"));
         btCriaConta.click();
 
         WebElement checkBox = driver.findElement(By.id("terms-and-conds"));
-        checkBox.click();
-        checkBox.click();
+        Thread.sleep(500);
         checkBox.click();
 
         WebElement btContinuar = driver.findElement(By.className("andes-button__content"));
         btContinuar.click();
 
         WebElement btValidar = driver.findElement(By.className("andes-button__content"));
-        btValidar.click();
+        Thread.sleep(500);
         btValidar.click();
 
         WebElement cxTexto = driver.findElement(By.name("email"));
-        cxTexto.sendKeys("schwarzenegger");
+        Thread.sleep(500);
         cxTexto.sendKeys("schwarzenegger");
 
         WebElement btEnviar = driver.findElement(By.className("andes-button__content"));
