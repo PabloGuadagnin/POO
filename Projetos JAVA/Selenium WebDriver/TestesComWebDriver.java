@@ -45,6 +45,7 @@ public class TestesComWebDriver {
 
     /**
      * Verifica se a busca está funcionando corretamente
+     * 
      * @throws InterruptedException
      */
     @Test
@@ -57,7 +58,7 @@ public class TestesComWebDriver {
         clickOk.click();
 
         Thread.sleep(1000);
-        
+
         WebElement resultadoBusca = driver.findElement(By.className("shops__item-title"));
         String resultado = resultadoBusca.getText();
         resultado = resultado.toLowerCase();
