@@ -1,10 +1,7 @@
-import java.time.Duration;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Main2 {
     public static void main(String[] args) {
@@ -14,9 +11,7 @@ public class Main2 {
                 // Atribui o endereço ao objeto
                 driver.get("https://www.mercadolivre.com.br/");
         
-
-
-                WebElement busca = driver.findElement(By.className("nav-search-input"));
+            WebElement busca = driver.findElement(By.className("nav-search-input"));
                 busca.sendKeys("PlayStation 5");
         
                 WebElement clickOk = driver.findElement(By.className("nav-search-btn"));
