@@ -18,8 +18,6 @@ public class TestesComWebDriver {
         driver.manage().window().maximize();
         // Atribui o endereço ao objeto
         driver.get("https://www.mercadolivre.com.br/");
-        // Faz o programa esperar 10 segundos para conferir (bom para internet lenta)
-        // new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     /**
@@ -57,15 +55,66 @@ public class TestesComWebDriver {
     }
 
     /**
-     * Verifica se o Login está funcionando
+     * Verifica se o site está consultando emails válidos no banco
+     * e informando que o email inserido é inválido
      */
     @Test
-    public void testeDeLogin() {
+    public void testeDeConsultaDeEmail() {
         WebElement btLogin = driver.findElement(By.partialLinkText("Entre"));
         btLogin.click();
 
-        WebElement cxTexto = driver.findElement(By.name("user_id"));
-        cxTexto.sendKeys("@hotmail.com");
+        WebElement btContinue = driver.findElement(By.className("andes-list__item-anchor"));
+        btContinue.click();
+
+        WebElement btComecar = driver.findElement(By.className("andes-button"));
+        btComecar.click();
+
+        WebElement cxTexto = driver.findElement(By.className("andes-form-control__field"));
+        cxTexto.sendKeys("schwarzenegger@hotmail.com");
+
+        WebElement btContinuar = driver.findElement(By.className("andes-button__content"));
+        btContinuar.click();
+
+        WebElement txt = driver.findElement(By.className("andes-form-control__message-fixed"));
+        txt.getText();
+
+        assertEquals("O e-mail ou usuário é inválido, por favor, volte a inseri-lo.", txt);
+        assertNotEquals("ABCD.", txt);
+    }
+
+    /**
+     * Testa se a mensagem de email digitado é inválido está aparecendo para o
+     * usuário
+     */
+    @Test
+    public void testeDeCadastroInvalido() {
+        WebElement btCriaConta = driver.findElement(By.partialLinkText("Crie a sua conta"));
+        btCriaConta.click();
+
+        WebElement checkBox = driver.findElement(By.id("terms-and-conds"));
+        checkBox.click();
+        checkBox.click();
+        checkBox.click();
+
+        WebElement btContinuar = driver.findElement(By.className("andes-button__content"));
+        btContinuar.click();
+
+        WebElement btValidar = driver.findElement(By.className("andes-button__content"));
+        btValidar.click();
+        btValidar.click();
+
+        WebElement cxTexto = driver.findElement(By.name("email"));
+        cxTexto.sendKeys("schwarzenegger");
+        cxTexto.sendKeys("schwarzenegger");
+
+        WebElement btEnviar = driver.findElement(By.className("andes-button__content"));
+        btEnviar.click();
+
+        WebElement txt = driver.findElement(By.className("andes-form-control__message"));
+        String txtFormat = txt.getText();
+
+        assertEquals("Utilize o formato nome@exemplo.com.", txtFormat);
+        assertNotEquals("ABCD.", txtFormat);
     }
 
     /**
