@@ -15,14 +15,23 @@ public class Main2 {
                 driver.get("https://www.mercadolivre.com.br/");
         
 
-        WebElement busca = driver.findElement(By.className("nav-search-input"));
-        busca.sendKeys("PS5");
 
-        WebElement clickOk = driver.findElement(By.className("nav-search-btn"));
-        clickOk.click();
+                WebElement busca = driver.findElement(By.className("nav-search-input"));
+                busca.sendKeys("PlayStation 5");
+        
+                WebElement clickOk = driver.findElement(By.className("nav-search-btn"));
+                clickOk.click();
+        
+                WebElement resultadoBusca = driver.findElement(By.className("shops__item-title"));
+                String resultado = resultadoBusca.getText();
 
-        WebElement resultadoBusca = driver.findElement(By.className("shops__item-title"));
-        String resultado = resultadoBusca.getText();
-        System.out.println(resultado);
+                System.out.println(resultado);
+                resultado = resultado.toLowerCase();
+
+              if (resultado.contains("playstation"))
+              System.out.println("sucesso");
+
+                    
+        driver.close();
     }
 }

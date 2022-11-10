@@ -1,18 +1,13 @@
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.time.Duration;
-
 import org.junit.*;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class TestesComWebDriver {
 
     // Cria o objeto driver que será manipulado nos testes
     WebDriver driver = new ChromeDriver();
-
-
 
     /**
      * Responsável por abrir o navegador no início dos testes
@@ -23,8 +18,8 @@ public class TestesComWebDriver {
         driver.manage().window().maximize();
         // Atribui o endereço ao objeto
         driver.get("https://www.mercadolivre.com.br/");
-
-       // new WebDriverWait(driver, Duration.ofSeconds(10));
+        // Faz o programa esperar 10 segundos para conferir (bom para internet lenta)
+        // new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     /**
@@ -48,27 +43,29 @@ public class TestesComWebDriver {
     public void verificaSeBuscaEstaFuncionando() {
 
         WebElement busca = driver.findElement(By.className("nav-search-input"));
-        busca.sendKeys("PS5");
+        busca.sendKeys("PlayStation 5");
 
         WebElement clickOk = driver.findElement(By.className("nav-search-btn"));
         clickOk.click();
 
         WebElement resultadoBusca = driver.findElement(By.className("shops__item-title"));
         String resultado = resultadoBusca.getText();
+        resultado = resultado.toLowerCase();
 
-        boolean sucesso;
-        if (resultado.toLowerCase().contains("Ps5"))
-            sucesso = true;
-            sucesso = false;
+        assertEquals(true, resultado.contains("playstation"));
+        assertNotEquals(true, resultado.contains("schwarzenegger"));
+    }
 
-        boolean sucesso2;
-        if (resultado.toLowerCase().contains("schwarzenegger"))
-            sucesso2 = true;
-            sucesso2 = false;
-        
-        assertEquals(true, sucesso);
-        assertNotEquals(true, sucesso2);
+    /**
+     * Verifica se o Login está funcionando
+     */
+    @Test
+    public void testeDeLogin() {
+        WebElement btLogin = driver.findElement(By.partialLinkText("Entre"));
+        btLogin.click();
 
+        WebElement cxTexto = driver.findElement(By.name("user_id"));
+        cxTexto.sendKeys("@hotmail.com");
     }
 
     /**
@@ -78,5 +75,4 @@ public class TestesComWebDriver {
     public void fechaNavegador() {
         driver.close();
     }
-
 }
