@@ -1,141 +1,193 @@
 import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.*;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.*;
+
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 
 public class TestesComWebDriver {
 
     // Cria o objeto driver que será manipulado nos testes
     WebDriver driver = new ChromeDriver();
+    // Indica o caminho do arquivo que será lido
+    String csv = "G:\\Meu Drive\\Rep.GitHub\\Projetos\\Projetos JAVA\\Selenium WebDriver\\teste.csv";
 
     /**
      * Responsável por abrir o navegador no início dos testes
-     * 
-     * @throws InterruptedException
      */
     @Before
-    public void abreNavegador() throws InterruptedException {
+    public void abreNavegador() {
         // Manipula a proporção do navegador, no caso: maximizado
         driver.manage().window().maximize();
         // Atribui o endereço ao objeto
         driver.get("https://www.mercadolivre.com.br/");
-        // Dá meio segundo ao site para que carregue
-        Thread.sleep(500);
         // Fecha a mensagem de cookies do site
         WebElement clickOk = driver.findElement(By.className("cookie-consent-banner-opt-out__action--key-accept"));
         clickOk.click();
-
-        Thread.sleep(500);
     }
 
     /**
      * Teste responsável por verificar o título do site
+     * 
+     * @throws IOException
+     * @throws CsvValidationException
      */
     @Test
-    public void verificaTitulo() {
+    public void verificaTitulo() throws CsvValidationException, IOException {
 
-        String tituloAtual = driver.getTitle();
-        String tituloEsperado = "BLACK FRIDAY 2022 A partir de Outubro! No Mercado Livre";
-        String tituloErrado = "Título Qualquer";
+        CSVReader reader = new CSVReader(new FileReader(csv));
+        String[] tableline = null;
 
-        assertEquals(tituloEsperado, tituloAtual);
-        assertNotEquals(tituloEsperado, tituloErrado);
+        while ((tableline = reader.readNext()) != null) {
+            for (int i = 0; i < 1; i++) {
+
+                String tituloAtual = driver.getTitle();
+
+                String tituloEsperado = tableline[1];
+                String tituloErrado = tableline[2];
+
+                assertEquals(tituloEsperado, tituloAtual);
+                assertNotEquals(tituloEsperado, tituloErrado);
+            }
+        }
     }
 
     /**
      * Verifica se a busca está funcionando corretamente
      * 
      * @throws InterruptedException
+     * @throws IOException
+     * @throws CsvValidationException
      */
     @Test
-    public void verificaSeBuscaEstaFuncionando() throws InterruptedException {
+    public void verificaSeBuscaEstaFuncionando() throws InterruptedException, IOException, CsvValidationException {
 
-        WebElement busca = driver.findElement(By.className("nav-search-input"));
-        busca.sendKeys("PlayStation 5");
+        CSVReader reader = new CSVReader(new FileReader(csv));
+        String[] tableline = null;
 
-        WebElement clickOk = driver.findElement(By.className("nav-search-btn"));
-        clickOk.click();
+        while ((tableline = reader.readNext()) != null) {
+            for (int i = 0; i < 1; i++) {
 
-        Thread.sleep(1000);
+                WebElement busca = driver.findElement(By.className("nav-search-input"));
+                busca.sendKeys(tableline[3]);
 
-        WebElement resultadoBusca = driver.findElement(By.className("shops__item-title"));
-        String resultado = resultadoBusca.getText();
-        resultado = resultado.toLowerCase();
+                WebElement clickOk = driver.findElement(By.className("nav-search-btn"));
+                clickOk.click();
 
-        assertEquals(true, resultado.contains("playstation"));
-        assertNotEquals(true, resultado.contains("schwarzenegger"));
+                Thread.sleep(1000);
+
+                WebElement resultadoBusca = driver.findElement(By.className("shops__item-title"));
+                String resultado = resultadoBusca.getText();
+                resultado = resultado.toLowerCase();
+
+                assertEquals(true, resultado.contains(tableline[4]));
+                assertNotEquals(true, resultado.contains(tableline[5]));
+            }
+        }
     }
 
     /**
-     * Verifica se o site está consultando emails válidos no banco
-     * e informando que o email inserido é inválido
+     * Testa se a mensagem de conta existente está aparecendo para o
+     * usuário ao tentar cadastrar uma nova conta com email
+     * já cadastrado
      * 
      * @throws InterruptedException
+     * @throws IOException
+     * @throws CsvValidationException
      */
     @Test
-    public void testeDeConsultaDeEmail() throws InterruptedException {
-        WebElement btLogin = driver.findElement(By.partialLinkText("Entre"));
-        btLogin.click();
+    public void testeDeCadastroExistente() throws InterruptedException, CsvValidationException, IOException {
 
-        WebElement btContinue = driver.findElement(By.className("andes-list__item-anchor"));
-        Thread.sleep(500);
-        btContinue.click();
+        CSVReader reader = new CSVReader(new FileReader(csv));
+        String[] tableline = null;
 
-        WebElement btComecar = driver.findElement(By.className("andes-button"));
-        Thread.sleep(500);
-        btComecar.click();
+        while ((tableline = reader.readNext()) != null) {
+            for (int i = 0; i < 1; i++) {
 
-        WebElement cxTexto = driver.findElement(By.className("andes-form-control__field"));
-        Thread.sleep(500);
-        cxTexto.sendKeys("schwarzenegger@hotmail.com");
+                WebElement btCriaConta = driver.findElement(By.partialLinkText("Crie a sua conta"));
+                btCriaConta.click();
 
-        WebElement btContinuar = driver.findElement(By.className("andes-button__content"));
-        Thread.sleep(500);
-        btContinuar.click();
+                WebElement checkBox = driver.findElement(By.id("terms-and-conds"));
+                Thread.sleep(500);
+                checkBox.click();
 
-        Thread.sleep(500);
-        WebElement txt = driver.findElement(By.className("andes-form-control__message-fixed"));
-        String textFormat = txt.getText();
+                WebElement btContinuar = driver.findElement(By.className("andes-button__content"));
+                btContinuar.click();
 
-        assertEquals("O e-mail ou usuário é inválido, por favor, volte a inseri-lo.", textFormat);
-        assertNotEquals("ABCD.", textFormat);
+                WebElement btValidar = driver.findElement(By.className("andes-button__content"));
+                Thread.sleep(500);
+                btValidar.click();
+
+                WebElement cxTexto = driver.findElement(By.name("email"));
+                Thread.sleep(500);
+                cxTexto.sendKeys(tableline[9]);
+
+                WebElement btEnviar = driver.findElement(By.className("andes-button__content"));
+                btEnviar.click();
+
+                Thread.sleep(1000);
+
+                WebElement txt = driver.findElement(By.className("andes-modal__title"));
+                Thread.sleep(500);
+                String txtFormat = txt.getText();
+
+                assertEquals(tableline[10], txtFormat);
+                assertNotEquals(tableline[2], txtFormat);
+            }
+        }
     }
 
     /**
      * Testa se a mensagem de email digitado é inválido está aparecendo para o
-     * usuário
+     * usuário ao tentar cadastrar uma nova conta
      * 
      * @throws InterruptedException
+     * @throws IOException
+     * @throws CsvValidationException
      */
     @Test
-    public void testeDeCadastroInvalido() throws InterruptedException {
-        WebElement btCriaConta = driver.findElement(By.partialLinkText("Crie a sua conta"));
-        btCriaConta.click();
+    public void testeDeCadastroInvalido() throws InterruptedException, CsvValidationException, IOException {
 
-        WebElement checkBox = driver.findElement(By.id("terms-and-conds"));
-        Thread.sleep(500);
-        checkBox.click();
+        CSVReader reader = new CSVReader(new FileReader(csv));
+        String[] tableline = null;
 
-        WebElement btContinuar = driver.findElement(By.className("andes-button__content"));
-        btContinuar.click();
+        while ((tableline = reader.readNext()) != null) {
+            for (int i = 0; i < 1; i++) {
 
-        WebElement btValidar = driver.findElement(By.className("andes-button__content"));
-        Thread.sleep(500);
-        btValidar.click();
+                WebElement btCriaConta = driver.findElement(By.partialLinkText("Crie a sua conta"));
+                btCriaConta.click();
 
-        WebElement cxTexto = driver.findElement(By.name("email"));
-        Thread.sleep(500);
-        cxTexto.sendKeys("schwarzenegger");
+                WebElement checkBox = driver.findElement(By.id("terms-and-conds"));
+                Thread.sleep(500);
+                checkBox.click();
 
-        WebElement btEnviar = driver.findElement(By.className("andes-button__content"));
-        btEnviar.click();
+                WebElement btContinuar = driver.findElement(By.className("andes-button__content"));
+                btContinuar.click();
 
-        WebElement txt = driver.findElement(By.className("andes-form-control__message"));
-        String txtFormat = txt.getText();
+                WebElement btValidar = driver.findElement(By.className("andes-button__content"));
+                Thread.sleep(500);
+                btValidar.click();
 
-        assertEquals("Utilize o formato nome@exemplo.com.", txtFormat);
-        assertNotEquals("ABCD.", txtFormat);
+                WebElement cxTexto = driver.findElement(By.name("email"));
+                Thread.sleep(500);
+                cxTexto.sendKeys(tableline[5]);
+
+                WebElement btEnviar = driver.findElement(By.className("andes-button__content"));
+                btEnviar.click();
+
+                WebElement txt = driver.findElement(By.className("andes-form-control__message"));
+                String txtFormat = txt.getText();
+
+                assertEquals(tableline[8], txtFormat);
+                assertNotEquals(tableline[7], txtFormat);
+            }
+        }
     }
 
     /**
@@ -143,6 +195,6 @@ public class TestesComWebDriver {
      */
     @After
     public void fechaNavegador() {
-        driver.close();
+      //  driver.close();
     }
 }
