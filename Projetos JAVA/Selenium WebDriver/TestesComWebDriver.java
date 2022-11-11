@@ -133,7 +133,7 @@ public class TestesComWebDriver {
 
                 Thread.sleep(1000);
 
-                WebElement txt = driver.findElement(By.className("andes-modal__title"));
+                WebElement txt = driver.findElement(By.className("andes-modal"));
                 Thread.sleep(500);
                 String txtFormat = txt.getText();
 

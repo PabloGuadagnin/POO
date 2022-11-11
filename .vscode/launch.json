@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Ex1",
+            "request": "launch",
+            "mainClass": "Ex1",
+            "projectName": "Projetos_6271b407"
+        },
+        {
+            "type": "java",
+            "name": "Launch Ex4",
+            "request": "launch",
+            "mainClass": "Ex4",
+            "projectName": "Projetos_6271b407"
+        },
+        {
+            "type": "java",
             "name": "Launch Trab1Main",
             "request": "launch",
             "mainClass": "Trab1Main",
