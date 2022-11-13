@@ -81,7 +81,7 @@ public class TestesComWebDriver {
 
                 Thread.sleep(1000);
 
-                WebElement resultadoBusca = driver.findElement(By.className("shops__item-title"));
+                WebElement resultadoBusca = driver.findElement(By.className("ui-search-layout--grid"));
                 String resultado = resultadoBusca.getText();
                 resultado = resultado.toLowerCase();
 
@@ -136,8 +136,8 @@ public class TestesComWebDriver {
                 Thread.sleep(500);
                 String txtFormat = txt.getText();
 
-                assertEquals(tableline[10], txtFormat);
-                assertNotEquals(tableline[2], txtFormat);
+                assertEquals(true, txtFormat.contains(tableline[10]));
+                assertNotEquals(true, txtFormat.contains(tableline[2]));
             }
         }
     }
@@ -194,6 +194,6 @@ public class TestesComWebDriver {
      */
     @After
     public void fechaNavegador() {
-      //  driver.close();
+        driver.close();
     }
 }
