@@ -28,10 +28,9 @@ public class Ex2 {
                 array[i] = i;
                 System.out.println(i);
             }
-
-            System.out.println("fim do método 2");
         } catch (ArrayIndexOutOfBoundsException e) {
             System.out.println("Erro, o indice do Array nao deve superar 10 posições.");
         }
+        System.out.println("fim do método 2");
     }
 }
