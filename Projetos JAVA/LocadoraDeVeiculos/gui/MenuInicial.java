@@ -32,6 +32,7 @@ public class MenuInicial{
     private MenuLocacoes menuLocacoes;
 
     public MenuInicial(){
+        menuClientes = new MenuClientes(listaClientes);
         menuVeiculos = new MenuVeiculos(listaVeiculos);
         menuLocacoes = new MenuLocacoes(listaLocacoes, listaVeiculos, listaClientes);
     }

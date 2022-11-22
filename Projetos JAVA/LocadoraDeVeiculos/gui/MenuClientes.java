@@ -2,10 +2,15 @@ package gui;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import construtores.*;
+import javax.swing.JOptionPane;
 
+import cadastramentos.CadClientes;
+import construtores.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.scene.Node;
 import javafx.fxml.FXML;
@@ -16,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -27,6 +33,14 @@ public class MenuClientes implements Initializable {
     private Stage stage;
     private Scene scene;
     private Parent root;
+    private CadClientes listaClientes = new CadClientes();
+
+    public MenuClientes() {
+    }
+
+    public MenuClientes(CadClientes listaClientes) {
+        this.listaClientes = listaClientes;
+    }
 
     Cliente cliente = new Cliente(null, null, null, null, null);
 
@@ -47,48 +61,34 @@ public class MenuClientes implements Initializable {
     private TextField telefoneCliente;
 
     @FXML
-    private TableView<Cliente> tabelaClientes;
+    private TableView<CadClientes> tabelaClientes;
 
     @FXML
-    private TableColumn<Cliente, String> colunaCPF;
+    private TableColumn<CadClientes, String> colunaCPF;
 
     @FXML
-    private TableColumn<Cliente, String> colunaNome;
-
-    // Funcionalidades
-    public void setNomeCliente() {
-        String nomeClienteString = nomeCliente.getText();
-        cliente.setNome(nomeClienteString);
-        System.out.println(nomeClienteString);
-    }
-
-    public void setCPFCliente() {
-        String cpfClienteString = cpfCliente.getText();
-        cliente.setCpf(cpfClienteString);
-        System.out.println(cpfClienteString);
-    }
-
-    public void setCNHCliente() {
-        String cnhClienteString = cnhCliente.getText();
-        cliente.setCnh(cnhClienteString);
-        System.out.println(cnhClienteString);
-    }
-
-    public void setEnderecoCliente() {
-        String enderecoClienteString = enderecoCliente.getText();
-        cliente.setEndereco(enderecoClienteString);
-        System.out.println(enderecoClienteString);
-    }
-
-    public void setTelefoneCliente() {
-        String telefoneClienteString = nomeCliente.getText();
-        cliente.setTelefone(telefoneClienteString);
-        System.out.println(telefoneClienteString);
-    }
+    private TableColumn<CadClientes, String> colunaNome;
 
     @FXML
     void confirmarCadastro(ActionEvent event) {
+        cliente.setNome(nomeCliente.getText());
+        cliente.setCpf(cpfCliente.getText());
+        cliente.setCnh(cnhCliente.getText());
+        cliente.setEndereco(enderecoCliente.getText());
+        cliente.setTelefone(telefoneCliente.getText());
 
+        listaClientes.add(cliente);
+
+        JOptionPane.showMessageDialog(null, "Cliente "
+                + cliente.getNome() + " cadastrado com sucesso.");
+
+        nomeCliente.setText("");
+        cpfCliente.setText("");
+        cnhCliente.setText("");
+        enderecoCliente.setText("");
+        telefoneCliente.setText("");
+
+        nomeCliente.requestFocus();
     }
 
     @FXML
