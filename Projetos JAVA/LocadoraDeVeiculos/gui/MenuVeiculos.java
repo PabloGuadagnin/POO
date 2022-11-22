@@ -30,7 +30,7 @@ public class MenuVeiculos implements Initializable {
     private Scene scene;
     private Parent root;
 
-    private CadVeiculos listaVeiculos;
+    private CadVeiculos listaVeiculos = new CadVeiculos();
 
     Veiculo veiculo = new Onibus(0, null, false, false, null, 0, 0);
     
@@ -62,14 +62,16 @@ public class MenuVeiculos implements Initializable {
     void confirmarCadastro(ActionEvent event) {
         veiculo.setPlaca(placaVeiculo.getText());
      //   veiculo.setAno(anoVeiculo.getText());
-        veiculo.setPlaca(placaVeiculo.getText());
+     //   veiculo.setValorDiaria(valorDiaVeiculo.getText());
 
         listaVeiculos.add(veiculo);
 
         JOptionPane.showMessageDialog(null, "Veiculo "
             + veiculo.getPlaca() + " cadastrado com sucesso.");
 
-        
+        placaVeiculo.setText("");
+        anoVeiculo.setText("");
+        valorDiaVeiculo.setText("");
 
         placaVeiculo.requestFocus();
     }
