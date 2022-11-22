@@ -8,12 +8,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 
-public class JFX extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage stage) {
         try {
-
+            // Informe o nome do arquivo fxml na string abaixo.
             Parent root = FXMLLoader.load(getClass().getResource("cPf.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);

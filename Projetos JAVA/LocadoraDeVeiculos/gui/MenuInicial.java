@@ -1,4 +1,4 @@
-package gui;
+
 
 import java.io.IOException;
 
@@ -13,8 +13,9 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- * Classe responsável por controlar a interface gráfica MenuInicial ( Controller
- * )
+ * 
+ * Classe responsável por controlar a interface gráfica MenuInicial ( Controller )
+ * 
  */
 public class MenuInicial{
 
